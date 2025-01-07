@@ -27,14 +27,16 @@ export const TodoHeader: React.FC<Props> = props => {
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (inputValue.trim() === '') {
+    const normalizedTitle = inputValue.trim();
+
+    if (normalizedTitle === '') {
       setErrorMessage(Error.EmptyTitle);
 
       return;
     }
 
     try {
-      await onAddTodo(inputValue.trim());
+      await onAddTodo(normalizedTitle);
       setInputValue('');
     } catch (err) {}
   };
